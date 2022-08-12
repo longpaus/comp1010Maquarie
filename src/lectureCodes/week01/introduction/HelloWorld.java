@@ -9,6 +9,7 @@ public class HelloWorld {
 		double bmi = weight/(height*height);
 		System.out.println(bmi);
 
+		
 		int num = 32768;
 		int nDigits = countDigits(num);
 		System.out.println("number of digits in "+num+" is "+nDigits);
