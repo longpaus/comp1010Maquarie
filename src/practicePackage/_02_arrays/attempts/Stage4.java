@@ -1,7 +1,8 @@
 package practicePackage._02_arrays.attempts;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
+import java.util.*;
+import java.util.Hashtable;
 
 public class Stage4 {
 
@@ -55,9 +56,48 @@ public class Stage4 {
 	 *         if data = null, return null
 	 *         if data = {}, return {}
 	 */
+	
+	public static int[] addElementToArr(int[] arr,int element) {
+		int [] newArr = new int[arr.length + 1];
+		for(int i = 0; i < newArr.length; i++){
+			if(i == newArr.length - 1){
+				newArr[i] = element;
+			}else{
+				newArr[i] = arr[i];
+			}
+		}
+		return newArr;
+	}
 
 	public static int[] getLongestAscendingSequence(int[] data) {
-		return new int[0];
+		if(data == null) {
+			return null;
+		}
+		if(data.length == 0) {
+			return new int[0];
+		}
+		int [] sequence = new int[0];
+		 HashMap map = new HashMap();
+		int longest = 0;
+		for(int num : data){
+			if(sequence.length == 0 || sequence[sequence.length - 1] <= num){
+				sequence = addElementToArr(sequence, num);
+			}
+			else if(sequence[sequence.length - 1] > num){
+				if(!map.containsKey(sequence.length)){
+					map.put(sequence.length,sequence);
+				}
+				if(sequence.length > longest){
+					longest = sequence.length;
+				}
+				sequence = new int[0];
+				sequence = addElementToArr(sequence, num);
+			}
+		}
+		if(!map.containsKey(sequence.length)){
+			map.put(sequence.length,sequence);
+		}
+		return (int[])map.get(longest);
 	}
 
 	/**
@@ -201,8 +241,25 @@ public class Stage4 {
 	 *         if data = {1,7,2,1,9,7,9,9}, return {1,7,2,9}
 	 *         if data = {7,2,1,1,9,7,9,9}, return {7,2,1,9}
 	 */
+	public static boolean isElementInArr(int[] data,int element){
+		for(int num : data){
+			if(num == element){
+				return true;
+			}
+		}
+		return false;
+	}
 	public static int[] getSet(int[] data) {
-		return new int[0]; // to be completed
+		if(data == null) {
+			return null;
+		}
+		int[] numbers = new int[0];
+		for(int num : data){
+			if(!isElementInArr(numbers, num)){
+				numbers = addElementToArr(numbers, num);
+			}
+		}
+		return numbers; // to be completed
 	}
 
 	/**
