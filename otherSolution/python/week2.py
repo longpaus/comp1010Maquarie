@@ -39,5 +39,21 @@ def getLongestUnchangedSequence(data):
         info[len(numbers)] = numbers
     return info[max(info, key=(lambda k: info[k] and k))]
 
+def checkIfSorted(data,ascending):
+    if ascending:
+        if(all(data[i] > data[i + 1] for i in range(len(data) - 1))):
+            return False
+    else:
+        if(all(data[i] < data[i + 1] for i in range(len(data) - 1))):
+            return False
+    return True
 
-print(getLongestUnchangedSequence([70, 70, 90, 90, 80, 80]))
+def sortIfNeeded(data,asc):
+    ascending = True if data[0] < data[-1] else False
+    if checkIfSorted(data,ascending):
+        return
+    if asc:
+        data = sorted(data)
+    else:
+        data = sorted(data,reverse=True)
+
