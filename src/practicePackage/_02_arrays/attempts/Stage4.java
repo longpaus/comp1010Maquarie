@@ -1,5 +1,7 @@
 package practicePackage._02_arrays.attempts;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Stage4 {
 
@@ -13,8 +15,33 @@ public class Stage4 {
 	 * since both arrays contain two 10s and one 30.
 	 * return 0 if either array is null
 	 */
+	
+	public static int[] deleteIndexInArr(int[] array,int index) {
+		int[] copy = new int[array.length - 1];
+
+		for (int i = 0, j = 0; i < array.length; i++) {
+		    if (i != index) {
+		        copy[j++] = array[i];
+		    }
+		}
+		return copy;
+	}
+	
 	public static int intersection(int[] a, int [] b) {
-		return 0; //to be completed
+		if(a == null || b == null) {
+			return 0;
+		}
+		int result = 0;
+		for(int i = 0; i < a.length; i++) {
+			for(int j = 0; j < b.length; j++) {
+				if(a[i] == b[j]) {
+					result++;
+					b = deleteIndexInArr(b,j);
+					break;
+				}
+			}
+		}
+		return result; //to be completed
 	}
 
 	/**
@@ -29,9 +56,10 @@ public class Stage4 {
 	 * if data = null, return null
 	 * if data = {}, return {}
 	 */
-	public static int[] getLongestAscendingSequence(int[] data) {
-		return new int[0]; //to be completed
-	}
+
+	public static int[] getLongestAscendingSequence(int[] data) { 
+		return new int[0];
+		}
 
 	/**
 	 * 
@@ -56,7 +84,17 @@ public class Stage4 {
 	 * do nothing if the array is null or has fewer than 2 items
 	 */
 	public static void sortDesc(int[] data) {
-		//to be completed
+		if(data == null || data.length < 2) {
+			return;
+		}
+		for(int i = 0; i + 1 < data.length; i++) {
+			if(data[i] < data[i + 1]) {
+				int tmp = data[i];
+				data[i] = data[i + 1];
+				data[i + 1] = tmp;
+				i = -1;
+			}
+		}
 	}
 
 	/**
