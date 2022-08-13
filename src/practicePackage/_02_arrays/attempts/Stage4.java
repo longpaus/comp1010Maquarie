@@ -173,7 +173,18 @@ public class Stage4 {
 	 *         array passed, false otherwise.
 	 */
 	public static boolean noCommonItems(int[][] data) {
-		return false; // to be completed
+		for(int row1 = 0; row1 < data.length; row1++){
+			for(int row2 = 0; row2 < data.length; row2++){
+				if(row1 != row2){
+					int[] a = data[row1];
+					int[] b = data[row2];
+					if(intersection(a, b) != 0){
+						return false;
+					}
+				}
+			}
+		}
+		return true; // to be completed
 	}
 
 	/**
