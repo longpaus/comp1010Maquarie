@@ -150,7 +150,20 @@ public class Stage4 {
 	 *         the array returned must have Math.min(p, q) occurrences of that item.
 	 */
 	public static int[] getCommonItemsSorted(int[] a, int[] b) {
-		return new int[0]; // to be completed
+		int numCommonItems = intersection(a,b);
+		int [] commonItems = new int[numCommonItems];
+		int index = 0;
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < b.length; j++) {
+				if (a[i] == b[j]) {
+					commonItems[index] = a[i];
+					index++;
+					b = deleteIndexInArr(b, j);
+					break;
+				}
+			}
+		}
+		return commonItems; // to be completed
 	}
 
 	/**
