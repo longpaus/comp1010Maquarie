@@ -20,6 +20,8 @@ public class Job {
 	 * assign the higher of n and 1 into the instance variable numberOfHours.
 	 */
 	public Job(double h, double n) {
+		hourlyRate = (h > MIN_HOURLY_RATE) ? h : MIN_HOURLY_RATE;
+		numberOfHours = (n > 1) ? n : 1;
 	}
 
 	/**
@@ -32,7 +34,7 @@ public class Job {
 	 * return 183.75
 	 */
 	public double getSalary() {
-		return 0;
+		return hourlyRate*numberOfHours;
 	}
 
 	/**
@@ -45,7 +47,7 @@ public class Job {
 	 * 0 if calling object has the same salary than parameter object
 	 */
 	public int compareTo(Job other) {
-		return 0;
+		return (getSalary() > other.getSalary()) ? 1 : (getSalary() < other.getSalary()) ? -1 : 0;
 	}
 
 	//DEFAULT CONSTRUCTOR, do not modify
