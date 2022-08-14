@@ -27,6 +27,9 @@ public class Box {
 	 * @param w (for width)
 	 */
 	public Box(int d, int h, int w) {
+		depth = (d < 1) ? 1 : d;
+		height = (h < 1) ? 1 : h;
+		width = (w < 1) ? 1 : w;
 	}
 
 	/**
@@ -36,6 +39,9 @@ public class Box {
 	 * @param original
 	 */
 	public Box(Box original) {
+		depth = original.depth;
+		height = original.height;
+		width = original.width;
 	}
 
 	/**
@@ -44,9 +50,10 @@ public class Box {
 	 * @return the volume of the box
 	 */
 	public int volume() {
-		return 0;
+		return height*width*depth;
 	}
 
+	
 	/**
 	 * May be helpful for other methods
 	 * 
@@ -57,8 +64,17 @@ public class Box {
 	 * comparison criteria: volume -> surface area
 	 *
 	 */
+	
 	public int compareTo(Box other) { //volume -> surface area
-		return 0;
+		if(volume() > other.volume()){
+			return 1;
+		}
+		else if(volume() < other.volume()){
+			return -1;
+		}
+		else{
+			return (surfaceArea() > other.surfaceArea()) ? 1 : (surfaceArea() < other.surfaceArea()) ? -1 : 0;
+		}
 	}
 
 	/**
@@ -72,7 +88,26 @@ public class Box {
 	 * comparison criteria: volume -> surface area -> longest sides -> second longest sides -> shortest side
 	 */
 	public int compareToAdvanced(Box other) { 
-		return 0;
+		if(compareTo(other) == 1){
+			return 1;
+		}
+		else if (compareTo(other) == -1){
+			return -1;
+		}
+		if(longestSide() > other.longestSide()){
+			return 1;
+		}
+		if(longestSide() < other.longestSide()){
+			return -1;
+		}
+		if(secondLongestSide() > other.secondLongestSide()){
+			return 1;
+		}
+		if(secondLongestSide() < other.secondLongestSide()){
+			return -1;
+		}
+		return (shortestSide() > other.shortestSide()) ? 1 : (shortestSide() < other.shortestSide()) ? -1 : 0;
+		
 	}
 
 	/**
@@ -80,15 +115,42 @@ public class Box {
 	 * @return the longest side of the box
 	 */
 	public int longestSide() {
-		return 0;
+		int[] tmp = {height,width,depth};
+		int longest = 1;
+		for(int side : tmp){
+			if(side > longest){
+				longest = side;
+			}
+		}
+		return longest;
 	}
+	public int secondLongestSide(){
+		int[] tmp = {height,width,depth};
+		int secondLongest = 1;
+		for(int side : tmp){
+			if(side > secondLongest && side != longestSide()){
+				secondLongest = side;
+			}
+		}
+		return secondLongest;
+	}
+
+	public int shortestSide(){
+		int[] tmp = {height,width,depth};
+		for(int side : tmp){
+			if(side != longestSide() && side != secondLongestSide()){
+				return side;
+			}
+		}
+		return height;
+	} 
 
 	/**
 	 * 
 	 * @return area of the front (or the back face)
 	 */
 	public int frontArea() {
-		return 0;
+		return height*width;
 	}
 
 	/**
@@ -96,7 +158,7 @@ public class Box {
 	 * @return the surface area of the box
 	 */
 	public int surfaceArea() {
-		return 0; 
+		return 2*depth*width + 2*depth*height + 2*height*width; 
 	}
 
 	/**
@@ -107,6 +169,12 @@ public class Box {
 	 * Note that a box cannot fit inside the box of the same dimension.
 	 */
 	public boolean canFitInside(Box b) {
-		return true;
+		if(height == b.height && width == b.width && depth == b.depth){
+			return false;
+		}
+		if(height <= b.height && width <= b.width && depth <= b.depth){
+			return true;
+		}
+		return false;
 	}
 }
