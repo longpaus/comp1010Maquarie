@@ -21,6 +21,8 @@ public class Fraction {
 	 * @param d: value for den (if d is 0, den should become 1)
 	 */
 	public Fraction(int n, int d) {
+		num = n;
+		den = (d == 0) ? 1 : d;
 	}
 
 	//DEFAULT CONSTRUCTOR, Do not modify
@@ -32,6 +34,6 @@ public class Fraction {
 
 	
 	public Fraction multiply(Fraction other) {
-		return null;
+		return  new Fraction(num*other.num,den*other.den);
 	}
 }
