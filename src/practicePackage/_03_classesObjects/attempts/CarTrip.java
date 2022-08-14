@@ -16,7 +16,8 @@ public class CarTrip {
 	 * assign the higher of 0 and t into time
 	 */
 	public CarTrip(double d, double t) {
-		//to be completed
+		distance = (d > 0) ? d : 0;
+		time = (t > 0) ? t : 0;
 	}
 
 	/**
@@ -24,6 +25,6 @@ public class CarTrip {
 	 * For example, if distance = 2.5, time = 1.2, return "2.5 kms travelled in 1.2 hours" 
 	 */
 	public String toString() {
-		return ""; //to be completed
+		return String.format("%.1f kms travelled in %.1f hours", distance, time);
 	}
 }
