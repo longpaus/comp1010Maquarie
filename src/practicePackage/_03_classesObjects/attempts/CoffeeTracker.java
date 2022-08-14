@@ -14,11 +14,18 @@ public class CoffeeTracker {
 	 * @param data (you may assume data.length > 0)
 	 */
 	public CoffeeTracker(int[] data) {
-		//to be completed
+		coffeesPerDay = new int[data.length];
+		for(int i = 0; i < data.length; i++){
+			coffeesPerDay[i] = data[i];
+		}
 	}
 
 	// Return the average number of coffees consumed
 	public double averageCoffeesConsumed() {
-		return 0; //to be completed
+		double sum = 0;
+		for(double num : coffeesPerDay){
+			sum += num;
+		}
+		return sum/coffeesPerDay.length; //to be completed
 	}
 }
