@@ -47,8 +47,8 @@ class DeliveryTruckTest {
 	@Test @Graded(description = "countidenticalboxes", marks = 1)
 	public void testCountIdenticalBoxes()  {
 		assertEquals(0, t1.countIdenticalBoxes());
-		assertEquals(14, t2.countIdenticalBoxes());
 		assertEquals(2, t3.countIdenticalBoxes());
+		assertEquals(14, t2.countIdenticalBoxes());
 		currentMethodName = new Throwable().getStackTrace()[0].getMethodName();
 	}
 
