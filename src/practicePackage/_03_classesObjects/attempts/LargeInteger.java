@@ -19,6 +19,7 @@ public class LargeInteger {
 	 * LargeInteger.isNumeric(String to check)
 	 */
 	public void setValue(String v) {
+		value = (isNumeric(v)) ? v : "0";
 	}
 
 	//DEFAULT CONSTRUCTOR, do not modify
@@ -54,7 +55,7 @@ public class LargeInteger {
 	 * example: if value = "1729", return 9 (NOT '9'!!!)
 	 */
 	public int getLastDigit() {
-		return 0;
+		return Character.getNumericValue(value.charAt(value.length() - 1));
 	}
 
 	/**
@@ -72,6 +73,41 @@ public class LargeInteger {
 
 	 */
 	public LargeInteger add(LargeInteger other) {
-		return null;
+		LargeInteger sum = new LargeInteger();
+		sum.setValue(findSum(value,other.value));
+		return sum;
 	}
+	
+	public static String findSum(String a, String b) {
+		 int i = a.length();
+		    int j = b.length();
+		    int k = Math.max(i, j) + 1; // room for carryover
+		    char[] c = new char[k];
+		    for (int digit = 0; k > 0; digit /= 10) {
+		        if (i > 0)
+		            digit += a.charAt(--i) - '0';
+		        if (j > 0)
+		            digit += b.charAt(--j) - '0';
+		        c[--k] = (char) ('0' + digit % 10);
+		    }
+		    for (k = 0; k < c.length - 1 && c[k] == '0'; k++) {/*Skip leading zeroes*/}
+		    return new String(c, k, c.length - k);
+	}
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
