@@ -26,6 +26,8 @@ public class Time {
 	 * minute should become 59 if m is more than 59
 	 */
 	public Time(int h, int m) {
+		hour = (h < 0) ? 0 : (h > 23) ? 23 : h;
+		minute = (m < 0) ? 0 : (m > 59) ? 59 : m;
 	}
 
 	/**
@@ -39,7 +41,11 @@ public class Time {
 	 * HINT 2: you can use DecimalFormat class
 	 */
 	public String toString() {
-		return null;
+		String strHour = (hour < 10) ? String.format("0%d", hour) : String.valueOf(hour);
+		String strMinute = (minute < 10) ? String.format("0%d", minute) : String.valueOf(minute);
+		
+		
+		return strHour + ":" + strMinute;
 	}
 
 	//DEFAULT CONSTRUCTOR, Do not modify
@@ -49,6 +55,25 @@ public class Time {
 
 	
 	public String toStringAMPM() {
-		return null;
+		boolean am = true;
+		if(hour > 12) {
+			hour -= 12;
+			am = false;
+		}
+		String AMPM = (am) ? " AM" : " PM";
+		return toString() + AMPM;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
