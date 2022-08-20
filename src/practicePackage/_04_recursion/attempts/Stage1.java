@@ -12,7 +12,14 @@ public class Stage1 {
 	 * IMPORTANT: for any integer x, x to the power of 0 is 1 
 	 */
 	public static int power(int x, int n) {
-		return 0; //to be completed
+		if(n == 0) {
+			return 1;
+		}
+		if(n == 1) {
+			return x;
+		}
+		
+		return x*power(x,n - 1);
 	}
 
 	/**
@@ -23,7 +30,14 @@ public class Stage1 {
 	 * return 0 if start is more than stop
 	 */
 	public static int sumRange(int start, int stop) {
-		return 0; //to be completed
+		if(start > stop) {
+			return 0;
+		}
+		if(start == stop) {
+			return start;
+		}
+		return start + sumRange(start + 1, stop);
+		 //to be completed
 	}
 
 	/**
@@ -34,7 +48,13 @@ public class Stage1 {
 	 * return 0 if n is less than or equal to 0
 	 */
 	public static int sumSquares(int n) {
-		return 0; //to be completed
+		if(n <= 0) {
+			return 0;
+		}
+		if(n == 1) {
+			return 1;
+		}
+		return n*n + sumSquares(n - 1);
 	}
 
 	/**
@@ -50,7 +70,15 @@ public class Stage1 {
 	 * HINT: if the number is even, ignore it and return sumOdd(n-1)
 	 */
 	public static int sumOdd(int n) {
-		return 0; //to be completed
+		if(n <= 0) {
+			return 0;
+		}
+		if(n % 2 != 0) {
+			return n+ sumOdd(n - 1);
+		}
+		else {
+			return sumOdd(n - 1);
+		}
 	}
 
 	/**
@@ -66,7 +94,15 @@ public class Stage1 {
 	 * HINT: If n is even, ignore it and return sumOddSquares(n-1)
 	 */
 	public static int sumOddSquares(int n) {
-		return 0; //to be completed
+		if(n <= 0) {
+			return 0;
+		}
+		if(n % 2 == 0) {
+			return sumOddSquares(n - 1);
+		}
+		else {
+			return n*n + sumOddSquares(n - 1);
+		}
 	}
 
 	/**
@@ -81,7 +117,25 @@ public class Stage1 {
 	 * HINT: you can check that a char ch is a digit using Character.isDigit(ch)
 	 */
 	public static boolean isNumeric(String str) {
-		return false; //to be completed
+		if(str == null) {
+			return false;
+		}
+		if(str.length() == 0) {
+			return true;
+		}
+		return isNumericRecur(str,str.length() - 1); //to be completed
+	}
+	
+	public static boolean isNumericRecur(String str,int n) {
+		if(Character.isDigit(str.charAt(n))) {
+			if(n == 0) {
+				return true;
+			}
+			return isNumericRecur(str, n - 1);
+		}
+		else {
+			return false;
+		}
 	}
 
 	/**
