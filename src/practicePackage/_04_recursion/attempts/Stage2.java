@@ -9,7 +9,26 @@ public class Stage2 {
 	 * @return the sum of the even digits in n
 	 */
 	public static int sumEvenDigits(int n) {
-		return 0; //to be completed
+		if(n < 0) {
+			n *= -1;
+		}
+		String s=String.valueOf(n);
+		return sumEvenDigitsRecur(s, s.length() - 1);
+	}
+	public static int sumEvenDigitsRecur(String s,int count) {
+		int value = Character.getNumericValue(s.charAt(count));
+		if(count == 0) {
+			if(value % 2 == 0) {
+				return value;
+			}
+			return 0;
+		}
+		if((value % 2 == 0)) {
+			return sumEvenDigitsRecur(s, count - 1) +  value;
+		}else {
+			return sumEvenDigitsRecur(s, count - 1);
+		}
+		
 	}
 
 	/**
@@ -26,7 +45,25 @@ public class Stage2 {
 	 * countDigit(0, 0) = 0 (NOT 1)
 	 */
 	public static int countDigit(int n, int d) {
-		return 0; //to be completed
+		if(n == 0){
+			return 0;
+		}
+		String s = String.valueOf(n);
+		return countDigitRecur(s, s.length() - 1, d); 
+	}
+
+	public static int countDigitRecur(String num,int index,int d){
+		int value = Character.getNumericValue(num.charAt(index));
+		if(index == 0){
+			if(value == d){
+				return 1;
+			}
+			return 0;
+		}
+		if(value == d){
+			return 1 + countDigitRecur(num,index - 1,d);
+		}
+		return countDigitRecur(num,index - 1,d);
 	}
 
 	/**
@@ -39,7 +76,10 @@ public class Stage2 {
 	 * HINT: multiplication is repeated addition
 	 */
 	public static int product(int a, int b) {
-		return 0; //to be completed
+		if(b == 1){
+			return a;
+		}
+		return a + product(a,b - 1);
 	}
 
 	/**
@@ -60,7 +100,20 @@ public class Stage2 {
 	 * tribonacci(7) = 13
 	 */
 	public static int tribonacci(int n) {
-		return 0; //to be completed
+		if(n < 2){
+			return 0;
+		}
+		if(n == 2){
+	        return 1;
+	    }
+		return tribonacciRecur(n, 0, 0, 1); //to be completed
+	}
+	public static int tribonacciRecur(int n,int num1, int num2,int num3){
+		int value = num1 + num2 + num3; 
+		if(n == 3){
+			return value;
+		}
+		return tribonacciRecur(n - 1, num2, num3, value);
 	}
 
 	/**
