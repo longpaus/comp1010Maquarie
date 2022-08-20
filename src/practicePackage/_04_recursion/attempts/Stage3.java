@@ -11,7 +11,29 @@ public class Stage3 {
 	 * note: the least significant digit is at location 1, the secon-least significant digit is at location 2, and so on.
 	 */
 	public static int removeDigit(int n, int loc) {
-		return 0; //to be completed
+		int tmpN = (n < 0) ? -1 * n : n;
+		String s = String.valueOf(tmpN);
+		if(loc > s.length() || loc <= 0){
+			return n;
+		}
+		if(n > 0) {
+			return removeDigitRecur(s,0,loc,""); //to be completed
+		}else {
+			return -1*removeDigitRecur(s,0,loc,""); //to be completed
+		}
+	}
+
+	public static int removeDigitRecur(String s,int index,int loc,String newNum){
+		if(index == s.length() - 1){
+			if(loc != s.length() - index){
+				newNum += s.charAt(index);
+			}
+			return Integer.parseInt(newNum);
+		}
+		if(loc != s.length() - index){
+			return removeDigitRecur(s, index + 1, loc, newNum + s.charAt(index));
+		}
+		return removeDigitRecur(s, index + 1, loc, newNum);
 	}
 
 	
