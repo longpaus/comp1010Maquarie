@@ -147,6 +147,47 @@ public class Stage1 {
 	 * IMPORTANT: You may not call the methods indexOf or lastIndexOf or contains from String class
 	 */
 	public static boolean containsStringString(String str, String target) {
-		return false; //to be completed
+		if(str == null || target == null) {
+			return false;
+		}
+		if(str.length() == 0) {
+			return false;
+		}
+		return containsStringRecursion(str, target,0, 0); //to be completed
 	}
+	
+	
+	public static boolean containsStringRecursion(String str, String target,int i,int count) {
+		if(str.charAt(i) == target.charAt(count) && count == target.length()) {
+			return true;
+		}
+		else if(str.charAt(i) != target.charAt(count) && i == str.length() - 1) {
+			return false;
+		}
+		if(str.charAt(i) == target.charAt(count)) {
+			if(count == target.length() - 1) {
+				return true;
+			}
+			return containsStringRecursion(str,target,i + 1,count + 1);
+		}else {
+			return containsStringRecursion(str,target,i + 1,0);
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
