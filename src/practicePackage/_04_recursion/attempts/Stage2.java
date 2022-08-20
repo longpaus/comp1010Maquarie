@@ -1,5 +1,7 @@
 package practicePackage._04_recursion.attempts;
 
+import java.util.*;  
+
 public class Stage2 {
 
 
@@ -122,7 +124,18 @@ public class Stage2 {
 	 * @return the smallest digit in the value passed
 	 */
 	public static int smallestDigit(int n) {
-		return 0;
+		n = (n < 0) ? -1 * n : n;
+		String s = String.valueOf(n);
+		return smallestDigitRecur(s, s.length() - 1, 9);
+	}
+
+	public static int smallestDigitRecur(String s, int index,int smallest){
+		int value = Character.getNumericValue((s.charAt(index)));  
+		if(index == 0){
+			return (smallest < value) ? smallest : value;
+		}
+		smallest = (smallest < value) ? smallest : value;
+		return smallestDigitRecur(s, index - 1, smallest);
 	}
 
 	/**
@@ -132,7 +145,22 @@ public class Stage2 {
 	 * return 0 if the number doesn't have any even digits
 	 */
 	public static int smallestEvenDigit(int n) {
-		return 0;	
+		n = (n < 0) ? -1 * n : n;
+		String s = String.valueOf(n);
+		return smallestEvenDigitRecur(s, s.length() - 1, 8);
+	}
+	public static int smallestEvenDigitRecur(String s,int index,int smallest){
+		int value = Character.getNumericValue((s.charAt(index)));  
+		if(index == 0){
+			if(value % 2 == 0){
+				return (smallest < value) ? smallest : value;
+			}
+			return smallest;
+		}
+		if(value < smallest && value % 2 == 0){
+			smallest = value;
+		}
+		return smallestEvenDigitRecur(s, index - 1, smallest);
 	}
 
 	/**
@@ -144,7 +172,27 @@ public class Stage2 {
 	 * return 0 if the number doesn't have any even digits
 	 */
 	public static int highestEvenDigitLocation(int n) {
-		return 0;
+		n = (n < 0) ? -1 * n : n;
+		String s = String.valueOf(n);
+		return highestEvenDigitLocationRecur(s,s.length() - 1,0,0);
+	}
+
+	public static int highestEvenDigitLocationRecur(String s,int index,int highest,int highestIndex){
+		int value = Character.getNumericValue((s.charAt(index)));  
+		if(index == 0){
+			if(highest == 0){
+				return 0;
+			}
+			if(value % 2 == 0 && value > highest){
+				return s.length() - index;
+			}
+			return highestIndex;
+		}
+		if(value > highest && value % 2 == 0){
+			highest = value;
+			highestIndex = s.length() - index;
+		}
+		return highestEvenDigitLocationRecur(s, index - 1, highest,highestIndex);
 	}
 
 	/**
@@ -156,6 +204,26 @@ public class Stage2 {
 	 * return 0 if the number is 0.
 	 */
 	public static int smallestDigitLocation(int n) {
-		return 0;
+		if(n == 0){
+			return 0;
+		}
+		n = (n < 0) ? -1 * n : n;
+		String s = String.valueOf(n);
+		return smallestDigitLocationRecur(s, s.length() - 1, 10, 0);
+	}
+
+	public static int smallestDigitLocationRecur(String str,int index,int smallest,int smallestIndex){
+		int value = Character.getNumericValue((str.charAt(index)));  
+		if(index == 0){
+			if(value < smallest){
+				return str.length() - index;
+			}
+			return smallestIndex;
+		}
+		if(value < smallest){
+			smallest = value;
+			smallestIndex = str.length() - index;
+		}
+		return smallestDigitLocationRecur(str, index - 1, smallest, smallestIndex);
 	}
 }
