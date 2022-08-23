@@ -22,7 +22,10 @@ public class Question2 { //begin class
    * false otherwise
    */
   public static boolean silverLining(int a, int b, int c) {
-  	return false; // to be completed
+	  if(a > 0 || b > 0|| c > 0) {
+		  return true;
+	  }
+	  return false;
   }
     //IMPORTANT!!! DO NOT MODIFY ANY CODE BELOW THIS LINE!
 
