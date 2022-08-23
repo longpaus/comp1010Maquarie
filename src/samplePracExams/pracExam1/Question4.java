@@ -20,7 +20,13 @@ public class Question4 { //begin class
    * Tip: a number (n) is odd if n%2 != 0
    */
   public static int sumOdd(int[] data) {
-  	return 0; //to be completed
+	  int sum = 0;
+	  for(int num : data) {
+		  if(num %2 != 0) {
+			  sum += num;
+		  }
+	  }
+  	return sum;
   } //closing bracket for method - DO NOT REMOVE
     //IMPORTANT!!! DO NOT MODIFY ANY CODE BELOW THIS LINE!
 
