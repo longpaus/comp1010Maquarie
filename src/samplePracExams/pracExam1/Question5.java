@@ -19,7 +19,13 @@ public class Question5 { //begin class
 	 * @return true if all items of data are positive, false otherwise
 	 */
 	public static boolean allPositives(int[] data) {
-		return true; //to be completed
+		boolean isPositive = true;
+		for(int num : data) {
+			if(num <= 0) {
+				isPositive = false;
+			}
+		}
+		return isPositive; 
 	} //closing bracket for method - DO NOT REMOVE
     //IMPORTANT!!! DO NOT MODIFY ANY CODE BELOW THIS LINE!
 
