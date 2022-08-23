@@ -21,9 +21,9 @@ def getLongestAscendingSequence(data):
             if len(numbers) not in info:
                 info[len(numbers)] = numbers
             numbers = [num]
-    info[len(numbers)] = numbers
+    if len(numbers) not in info:
+        info[len(numbers)] = numbers
     return info[max(info, key=(lambda k: info[k] and k))]
-
 
 def getLongestUnchangedSequence(data):
     info = {}
@@ -57,3 +57,5 @@ def sortIfNeeded(data,asc):
     else:
         data = sorted(data,reverse=True)
 
+print(getLongestAscendingSequence([50, 40, 30, 30]))
+print(getlonges)

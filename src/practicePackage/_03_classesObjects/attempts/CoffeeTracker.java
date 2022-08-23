@@ -23,9 +23,9 @@ public class CoffeeTracker {
 	// Return the average number of coffees consumed
 	public double averageCoffeesConsumed() {
 		double sum = 0;
-		for(double num : coffeesPerDay){
+		for(double num : coffeesPerDay)
 			sum += num;
-		}
+		
 		return sum/coffeesPerDay.length; //to be completed
 	}
 }

@@ -1,5 +1,7 @@
 package practicePackage._02_arrays.attempts;
 
+import java.util.Map;
+
 public class Stage3 {
 
 
@@ -43,6 +45,7 @@ public class Stage3 {
 	 * return null if n is less than 0
 	 */
 	public static int[] generate(int n) {
+		
 		return new int[0]; //to be completed
 	}
 
@@ -178,6 +181,7 @@ public class Stage3 {
 	 * @return the total number of unique items in each non-null subarray of data,
 	 * return 0 if data is null or empty
 	 */
+	
 	public static int totalNumberOfUniqueItems(int[][] data) {
 		return 0; //to be completed
 	}

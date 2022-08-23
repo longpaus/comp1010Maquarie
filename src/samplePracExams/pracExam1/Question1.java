@@ -20,7 +20,7 @@ public class Question1 { //begin class
    * @return higher of the two values from a and b
    */
   public static int higher(int a, int b) {
-  	return 0; // to be completed
+	  return (a > b) ? a : b;
   }
     //IMPORTANT!!! DO NOT MODIFY ANY CODE BELOW THIS LINE!
 

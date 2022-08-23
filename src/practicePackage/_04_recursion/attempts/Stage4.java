@@ -1,5 +1,9 @@
 package practicePackage._04_recursion.attempts;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class Stage4 {
 
 
@@ -75,10 +79,42 @@ public class Stage4 {
 	 * not necessarily next to each other, add up to target, false otherwise.
 	 * if data = {10,70,20,90}, start = 0, target = 30, return true (10+20 = 30)
 	 * if data = {10,70,20,90}, start = 0, target = 60, return false
+	 * [10,20,70,90]
 	 */
 	public static boolean addsUpTo(int[] data, int start, int target) {
+		ArrayList<Integer> arr = getPartOfArr(data, start);
+		Collections.sort(arr);  
+		int low = 0; 
+		int high = arr.size() - 1;
+		while(low < high){
+			if(findSum(arr, low, high) > target){
+				high--;
+			}
+			else if(findSum(arr, low, high) < target){
+				low++;
+			}
+			else{
+				return true;
+			}
+		}
+		
 		return false;
 	}
+	public static ArrayList<Integer> getPartOfArr(int[] data, int start){
+		ArrayList<Integer> newArr = new ArrayList<Integer>();
+		for(int i = start; i < data.length; i++){
+			newArr.add(data[i]);
+		}
+		return newArr;
+	}
+	public static int findSum(ArrayList<Integer> data, int start, int end){
+		int sum = 0;
+		for(int i = start; i <= end; i++){
+			sum += data.get(i);
+		}
+		return sum;
+	}
+	
 
 	/**
 	 * 

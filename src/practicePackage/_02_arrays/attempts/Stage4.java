@@ -96,6 +96,8 @@ public class Stage4 {
 		}
 		if(!map.containsKey(sequence.length)){
 			map.put(sequence.length,sequence);
+			
+		
 		}
 		return (int[])map.get(longest);
 	}

@@ -57,14 +57,14 @@ public class Stage4Test {
 	@Test @Graded(description = "getlongestascendingsequence", marks = 1)
 	public void testGetLongestAscendingSequence()  {
 		assertEquals(0, Stage4.getLongestAscendingSequence(empty).length);
+		assertEquals("[30, 30]", Arrays.toString(Stage4.getLongestAscendingSequence(new int[] {50, 40, 30, 30})));
+		assertEquals("[0, 1, 2, 3, 4, 5]", Arrays.toString(Stage4.getLongestAscendingSequence(nonNegsLong)));
 		assertEquals("[777]", Arrays.toString(Stage4.getLongestAscendingSequence(singleItemArray)));
 		assertEquals("[10, 70]", Arrays.toString(Stage4.getLongestAscendingSequence(tenMultiples)));
 		assertEquals("[2, 3, 5]", Arrays.toString(Stage4.getLongestAscendingSequence(nonNegsShort)));
-		assertEquals("[0, 1, 2, 3, 4, 5]", Arrays.toString(Stage4.getLongestAscendingSequence(nonNegsLong)));
 		assertEquals("[3, 5, 6]", Arrays.toString(Stage4.getLongestAscendingSequence(positives)));
 		assertEquals("[0, 10]", Arrays.toString(Stage4.getLongestAscendingSequence(mixed)));
 		assertEquals("[0, 0, 0, 0, 0]", Arrays.toString(Stage4.getLongestAscendingSequence(allZeroes)));
-		assertEquals("[30, 30]", Arrays.toString(Stage4.getLongestAscendingSequence(new int[] {50, 40, 30, 30})));
 		currentMethodName = new Throwable().getStackTrace()[0].getMethodName();
 	}
 

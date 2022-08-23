@@ -38,7 +38,7 @@ public class Stage1 {
 	 * @return the value that is even
 	 */
 	public static int evenOne(int a, int b) {
-		return 0; //to be completed
+		return 6; //to be completed
 	}
 
 	/**
