@@ -113,9 +113,28 @@ public class Stage3 {
 	 * @return true if s1 and s2 are anagrams of each other, false otherwise
 	 */
 	public static boolean areAnagrams(String s1, String s2) {
-		return false; //to be completed
-	}
+		if(s1.length() == 0 || s2.length() == 0) {
+			return false;
+		}
+		s1 = sortStringRecur(s1, 0);
+		s2 = sortStringRecur(s2, 0);
 
+
+		return s1.equals(s2); //to be completed
+	}
+	public static String sortStringRecur(String s,int index){
+		if(Character.compare(s.charAt(index), s.charAt(index + 1)) > 0){
+			char[] charArr = s.toCharArray();
+			charArr[index] = s.charAt(index + 1);
+			charArr[index + 1] = s.charAt(index);
+			s = String.valueOf(charArr);
+			return sortStringRecur(s, 0);
+		}
+		if(index + 1 == s.length() - 1){
+			return s;
+		}
+		return sortStringRecur(s, index + 1);
+	}
 	/**
 	 * a polynomial is defined as 
 	 * (c_0 *  x^0) +  (c_1 *  x^1) + ... (c_n *  x^n)
@@ -141,6 +160,23 @@ public class Stage3 {
 	 * @return
 	 */
 	public static double evaluatePolynomial(int[] coefficients, int maxDegree, int xValue) {
-		return 0; //to be completed
+		return evaluatePolynomialRecur(coefficients,maxDegree,xValue,0);
+	}
+	public static double evaluatePolynomialRecur(int[] coefficients, int degree, int xValue,int sum){
+		if(degree == 0){
+			return sum + coefficients[0];
+		}
+		return evaluatePolynomialRecur(coefficients, degree - 1, xValue, sum + coefficients[degree]*power(xValue, degree));
+	}
+
+	public static int power(int x, int n) {
+		if(n == 0) {
+			return 1;
+		}
+		if(n == 1) {
+			return x;
+		}
+		
+		return x*power(x,n - 1);
 	}
 }
