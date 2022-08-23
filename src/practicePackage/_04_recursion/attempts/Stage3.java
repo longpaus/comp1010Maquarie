@@ -38,7 +38,14 @@ public class Stage3 {
 
 	
 	public static double powerV2(int x, int n) {
-		return 0; //to be completed
+		n = (n < 0) ? -n : n;
+		if(n == 1){
+			return x;
+		}
+		else if (n == 0) {
+			return 1;
+		}
+		return x*powerV2(x, n - 1); //to be completed
 	}
 
 	/**
@@ -76,7 +83,27 @@ public class Stage3 {
 	 * @return the smallest number that can be formed by re-arranging the digits of n.
 	 */
 	public static int smallestNumber(int n) {
-		return 0;
+		int tmpN = (n < 0) ? -1 * n : n;
+		String s = String.valueOf(tmpN);
+		if(s.length() == 1){
+			return Integer.parseInt(s);
+		}
+		return smallestNumberRecur(s, 0);
+	}
+	public static int smallestNumberRecur(String s,int index){
+		int num1 = Character.getNumericValue(s.charAt(index));  
+		int num2 = Character.getNumericValue(s.charAt(index + 1));
+		if(num1 > num2){
+			char[] charArr = s.toCharArray();
+			charArr[index] = s.charAt(index + 1);
+			charArr[index + 1] = s.charAt(index);
+			s = String.valueOf(charArr);
+			return smallestNumberRecur(s,0);
+		}
+		if(index + 1 == s.length() - 1){
+			return Integer.parseInt(s);
+		}
+		return smallestNumberRecur(s, index + 1);
 	}
 
 	/**
