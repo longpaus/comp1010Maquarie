@@ -22,7 +22,14 @@ public class Question6 { //begin class
 	 * that returns number of times item target exists in array data
 	 */
 	public static boolean oneOfAKind(int[] arr) {
-		return false; //to be completed
+		for(int i = 0; i < arr.length; i++) {
+			for(int j = 0; j < arr.length; j++) {
+				if(arr[i] == arr[j] && j != i) {
+					return false;
+				}
+			}
+		}
+		return true; 
 	} //closing bracket for method - DO NOT REMOVE
     //IMPORTANT!!! DO NOT MODIFY ANY CODE BELOW THIS LINE!
 
