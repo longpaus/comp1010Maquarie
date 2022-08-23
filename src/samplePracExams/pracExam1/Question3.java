@@ -20,7 +20,11 @@ public class Question3 { //begin class
 	 * for example, if n is 5, method returns 1+2+3+4+5 = 15
 	 */
 	public static int sum(int n) {
-		return 0; //to be completed
+		int sum = 0;
+		for(int i = 1; i <= n; i++) {
+			sum += i;
+		}
+		return sum;
 	} //closing bracket for method - DO NOT REMOVE
     //IMPORTANT!!! DO NOT MODIFY ANY CODE BELOW THIS LINE!
 
