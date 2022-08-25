@@ -35,6 +35,8 @@ class Printout {
 	 * if w = -1.4, width should become 1.4
 	 */
 	public Printout(double h, double w) {
+		height = (h < 0) ? -h : h;
+		width = (w < 0) ? -w : w;
 		//to be completed
 	}
 } //end of class (do not delete this closing bracket)
