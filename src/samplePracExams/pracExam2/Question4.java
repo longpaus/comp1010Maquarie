@@ -22,6 +22,14 @@ public class Question4 { //begin class
 	 * IMPORTANT: return -1 if array is null or if none of the items of the array are higher than minValue
 	 */
 	public static int indexOfHigherThan(int[] data, int minValue) {
+		if(data == null) {
+			return -1;
+		}
+		for(int i = 0; i < data.length; i++) {
+			if(data[i] > minValue) {
+				return i;
+			}
+		}
 		return -1; //to be completed
 	} //end of method (do not delete this closing bracket)
     //IMPORTANT!!! DO NOT MODIFY ANY CODE BELOW THIS LINE!

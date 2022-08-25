@@ -23,7 +23,14 @@ public class Question5 { //begin class
 	* itself in a way that it contributes to the final answer
 	*/
 	public static int sumBetweenRecursive(int min, int max) {
-	 		return 0; //to be completed
+		if(min > max) {
+			return 0;
+		}
+		int sum = 0;
+		for(int i = min; i <= max; i++) {
+			sum += i;
+		}
+	 		return sum; //to be completed
 	} //end of sumBetweenRecursive (do not delete this closing bracket)
     //IMPORTANT!!! DO NOT MODIFY ANY CODE BELOW THIS LINE!
 

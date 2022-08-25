@@ -39,7 +39,7 @@ class Job {
 	 * return 120
 	 */
 	public double getSalary() {
-		return 0; //to be completed
+		return hourlyRate*numberOfHours;
 	}
 
 	/**
@@ -51,7 +51,7 @@ class Job {
 	 * 0 if hourlyRate of calling object is same as the hourlyRate of the parameter object
 	 */
 	public int compareTo(Job other) {
-		return 0; //to be completed
+		return (hourlyRate > other.hourlyRate) ? 1 : (hourlyRate < other.hourlyRate) ? -1 : 0;
 	}
 } //end of class (do not delete this closing bracket)
 

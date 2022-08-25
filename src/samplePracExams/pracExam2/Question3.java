@@ -20,6 +20,11 @@ public class Question3 { //begin class
 	 * false otherwise
 	 */
 	public static boolean containsPositive(int[] data) {
+		for(int num: data) {
+			if(num > 0) {
+				return true;
+			}
+		}
 		return false; //to be completed
 	} //end of containsPositive (do not delete this closing bracket)
     //IMPORTANT!!! DO NOT MODIFY ANY CODE BELOW THIS LINE!

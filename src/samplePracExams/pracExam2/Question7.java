@@ -3,6 +3,8 @@ package samplePracExams.pracExam2;
 //IMPORTANT! Do NOT change any method headers
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
+
 import org.junit.*;
 import java.io.*;
 import java.text.*;
@@ -26,7 +28,16 @@ public class Question7 { //begin class
 	* Note: if targetTime is 10:30, then 10:29 is the first time that occurs before 10:30
 	*/
 	public static int countBefore(Time[] arr, Time target) {
-		return 0; //to be completed
+		if(arr == null) {
+			return 0;
+		}
+		int result = 0;
+		for(Time time: arr) {
+			if(time.compareTo(target) == -1) {
+				result += 1;
+			}
+		}
+		return result; 
 	} //end of method countBefore (do not delete this closing bracket)
     //IMPORTANT!!! DO NOT MODIFY ANY CODE BELOW THIS LINE!
 

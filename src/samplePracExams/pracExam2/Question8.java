@@ -14,6 +14,13 @@ import java.lang.reflect.*;
 //10 marks
 @SuppressWarnings("unused")
 public class Question8 { //begin class 
+	public static int sum(ArrayList<Integer> arr) {
+		int sum = 0;
+		for(int num: arr) {
+			sum += num;
+		}
+		return sum;
+	}
 	/**
 	 * @param arr: an array of positive integers
 	 * @return the length of longest chain of integers in arr that add up to an
@@ -33,7 +40,18 @@ public class Question8 { //begin class
 	 * You may add a helper method if you need one
 	 */
 	public static int longestChainAddingUpToEven(int[] arr) {
-		return 0; //to be completed
+		ArrayList<Integer> sequence = new ArrayList<>();
+		int longest = 0;
+		for(int i = 0; i < arr.length; i++) {
+			for(int j = i; j < arr.length; j++) {
+				sequence.add(arr[j]);
+				if(sum(sequence) % 2 == 0 && sequence.size() > longest) {
+					longest = sequence.size();
+				}
+			}
+			sequence.clear();
+		}
+		return longest; //to be completed
 	} //end of method longestChainAddingUpToEven (do not delete this closing bracket)
     //IMPORTANT!!! DO NOT MODIFY ANY CODE BELOW THIS LINE!
 
