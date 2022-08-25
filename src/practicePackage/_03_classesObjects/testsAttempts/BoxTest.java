@@ -163,6 +163,14 @@ class BoxTest {
 		assertEquals(378, e.surfaceArea());
 		currentMethodName = new Throwable().getStackTrace()[0].getMethodName();
 	}
+	/*
+	a = new Box(1,1,1);
+	b = new Box(3,2,5);
+	c = new Box(2,9,9);
+	d = new Box(18,3,3);
+	e = new Box(1,18,9);
+	*/
+	
 
 	@Test @Graded(description = "canfitinside", marks = 1)
 	public void testCanFitInside()  {

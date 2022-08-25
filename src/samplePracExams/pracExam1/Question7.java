@@ -30,7 +30,35 @@ public class Question7 { //begin class
 	 * return the array {5}
 	 */
 	public static int[] longestRecurringSequence(int[] arr) {
-		return null; //to be completed
+		ArrayList<Integer> sequence = new ArrayList<>();
+		HashMap<ArrayList<Integer>,Integer> map=new HashMap<>();
+
+		for(int i = 0; i < arr.length; i++) {
+			for(int j = i; j < arr.length; j++){
+				sequence.add(arr[j]);
+				ArrayList<Integer> tmpArr = sequence;
+				map.computeIfPresent(tmpArr, (key,val) -> val + 1);
+				map.computeIfAbsent(tmpArr, key -> 1);
+			}
+			sequence.clear();
+		}
+		int longest = 0;
+		for(ArrayList<Integer> key: map.keySet()){
+			if(key.size() > longest && map.get(key) > 1){
+				longest = key.size();
+			}
+		}
+		int[] ans = new int[longest];
+		for(ArrayList<Integer> key: map.keySet()){
+			if(key.size() == longest){
+				for(int i = 0; i < longest; i++){
+					ans[i] = key.get(i);
+				}
+				return ans;
+			}
+			
+		}
+		return ans; //to be completed
 	} //closing bracket for method - DO NOT REMOVE
     //IMPORTANT!!! DO NOT MODIFY ANY CODE BELOW THIS LINE!
 

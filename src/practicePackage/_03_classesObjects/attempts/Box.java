@@ -1,5 +1,7 @@
 package practicePackage._03_classesObjects.attempts;
 
+import javax.print.attribute.standard.MediaSize.Other;
+
 /**
  * 
  * @author gauravgupta
@@ -66,7 +68,7 @@ public class Box {
 	 */
 	
 	public int compareTo(Box other) { //volume -> surface area
-		if(volume() > other.volume()){
+		if(this.volume() > other.volume()){
 			return 1;
 		}
 		else if(volume() < other.volume()){
@@ -124,6 +126,8 @@ public class Box {
 		}
 		return longest;
 	}
+	
+	
 	public int secondLongestSide(){
 		int[] tmp = {height,width,depth};
 		int secondLongest = 1;
@@ -169,12 +173,63 @@ public class Box {
 	 * Note that a box cannot fit inside the box of the same dimension.
 	 */
 	public boolean canFitInside(Box b) {
-		if(height == b.height && width == b.width && depth == b.depth){
-			return false;
+		int[] thisSides = {height,width,depth};
+		int[] bSides = {b.height,b.width,b.depth};
+		sortDimensions(bSides);
+		sortDimensions(thisSides);
+		for(int i = 0; i < bSides.length; i++) {
+			if(thisSides[i] >= bSides[i]) {
+				return false;
+			}
 		}
-		if(height <= b.height && width <= b.width && depth <= b.depth){
-			return true;
-		}
-		return false;
+		return true;
 	}
+	
+	
+	public static void sortDimensions(int[] sides) {
+		for(int i = 0; i + 1 < sides.length; i++) {
+			if(sides[i] > sides[i + 1]) {
+				int tmp = sides[i];
+				sides[i] = sides[i + 1];
+				sides[i + 1] = tmp;
+				i = -1;
+			}
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
