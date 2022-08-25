@@ -1,4 +1,5 @@
 package practicePackage._05_arrayList.attempts;
+import java.security.KeyStore.LoadStoreParameter;
 import java.util.ArrayList;
 
 import serviceClasses.Rectangle;
@@ -14,7 +15,13 @@ public class Stage1 {
 	 * return the only value if list contains a single item
 	 */
 	public static Integer getSumFirstLastItems(ArrayList<Integer> list) {
-		return null; //to be completed
+		if(list == null || list.isEmpty()) {
+			return null;
+		}
+		if(list.size() == 1) {
+			return list.get(0);
+		}
+		return list.get(0) + list.get(list.size() - 1);
 	}
 
 	/**
@@ -25,6 +32,12 @@ public class Stage1 {
 	 * return false if EITHER list is null
 	 */
 	public static boolean sameSize(ArrayList<Integer> a, ArrayList<Integer> b) {
+		if(a == null || b == null) {
+			return false;
+		}
+		if(a.size() == b.size()) {
+			return true;
+		}
 		return false; //to be completed
 	}
 
@@ -35,6 +48,9 @@ public class Stage1 {
 	 * return null if list is null or empty
 	 */
 	public static Rectangle getFirstItem(ArrayList<Rectangle> list) {
-		return null; //to be completed
+		if(list == null || list.isEmpty()) {
+			return null;
+		}
+		return list.get(0); 
 	}
 }
