@@ -59,7 +59,7 @@ public class Stage2 {
 			return false;
 		}
 		for (int num : list) {
-			if (num >= low && low <= high) {
+			if (num >= low && num <= high) {
 				return true;
 			}
 		}
@@ -183,6 +183,9 @@ public class Stage2 {
 	 *         [low...high]
 	 */
 	public static int sumInRange(ArrayList<Integer> list, int low, int high) {
+		if (list == null) {
+			return 0;
+		}
 		int sum = 0;
 		for (int num : list) {
 			if (num >= low && num <= high) {
@@ -198,6 +201,9 @@ public class Stage2 {
 	 * @return the sum of all items at even indices of the list passed
 	 */
 	public static int sumEvenIndexedItems(ArrayList<Integer> list) {
+		if (list == null) {
+			return 0;
+		}
 		int sum = 0;
 		for (int i = 0; i < list.size(); i++) {
 			if (i % 2 == 0) {
@@ -213,9 +219,12 @@ public class Stage2 {
 	 *             reset any negative value(s) in the list passed to zero.
 	 */
 	public static void resetNegatives(ArrayList<Integer> list) {
+		if (list == null) {
+			return;
+		}
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i) < 0) {
-				list.set(i, -1 * list.get(i));
+				list.set(i, 0);
 			}
 		}
 	}
@@ -271,7 +280,7 @@ public class Stage2 {
 		}
 		int numItems = 0;
 		for (int num : list) {
-			if (num % n == 0) {
+			if (n % num == 0) {
 				numItems++;
 			}
 		}
@@ -312,6 +321,9 @@ public class Stage2 {
 		if (list == null) {
 			return false;
 		}
+		if (startIndex < 0) {
+			return false;
+		}
 		for (int i = startIndex; i < list.size(); i++) {
 			if (list.get(i) == target) {
 				return true;
@@ -333,7 +345,7 @@ public class Stage2 {
 	 * 
 	 */
 	public static boolean containsBetweenIndices(ArrayList<Integer> list, int target, int startIndex, int endIndex) {
-		if (list == null) {
+		if (list == null || startIndex < 0 || endIndex > list.size() - 1 || startIndex > endIndex) {
 			return false;
 		}
 		for (int i = startIndex; i <= endIndex; i++) {
@@ -352,7 +364,7 @@ public class Stage2 {
 	 *         return 0 if list is null.
 	 */
 	public static int sumUptoIndex(ArrayList<Integer> list, int endIndex) {
-		if (list == null) {
+		if (list == null || endIndex > list.size() - 1 || endIndex < 0) {
 			return 0;
 		}
 		int sum = 0;
@@ -370,7 +382,7 @@ public class Stage2 {
 	 *         return 0 if list is null.
 	 */
 	public static int sumEvenFromIndex(ArrayList<Integer> list, int startIndex) {
-		if (list == null) {
+		if (list == null || startIndex < 0 || startIndex > list.size() - 1) {
 			return 0;
 		}
 		int sum = 0;
@@ -391,7 +403,7 @@ public class Stage2 {
 	 *         endIndex.
 	 */
 	public static int productPositivesUptoIndex(ArrayList<Integer> list, int endIndex) {
-		if (list == null) {
+		if (list == null || endIndex < 0 || endIndex > list.size() - 1) {
 			return 1;
 		}
 		int product = 1;
@@ -415,7 +427,16 @@ public class Stage2 {
 	 *         startIndex and endIndex.
 	 */
 	public static int countOccurrencesBetweenIndices(ArrayList<Integer> list, int key, int startIndex, int endIndex) {
-		return 0; // to be completed
+		if (list == null || startIndex < 0 || endIndex > list.size() - 1 || startIndex > endIndex) {
+			return 0;
+		}
+		int count = 0;
+		for (int i = startIndex; i <= endIndex; i++) {
+			if (list.get(i) == key) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	/**
@@ -426,7 +447,15 @@ public class Stage2 {
 	 *         return false if the list is null.
 	 */
 	public static boolean allPositives(ArrayList<Integer> list) {
-		return false; // to be completed
+		if (list == null) {
+			return false;
+		}
+		for (int num : list) {
+			if (num <= 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -436,7 +465,15 @@ public class Stage2 {
 	 *         return false if the list is null.
 	 */
 	public static boolean allZeroes(ArrayList<Integer> list) {
-		return false; // to be completed
+		if (list == null) {
+			return false;
+		}
+		for (int num : list) {
+			if (num != 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -447,7 +484,15 @@ public class Stage2 {
 	 *         return false if the list is null.
 	 */
 	public static boolean containsPositive(ArrayList<Integer> list) {
-		return false; // to be completed
+		if (list == null) {
+			return false;
+		}
+		for (int num : list) {
+			if (num > 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -457,7 +502,15 @@ public class Stage2 {
 	 *         return false if the list is null.
 	 */
 	public static boolean containsZero(ArrayList<Integer> list) {
-		return false; // to be completed
+		if (list == null) {
+			return false;
+		}
+		for (int num : list) {
+			if (num == 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -467,7 +520,15 @@ public class Stage2 {
 	 *         return false if the list is null.
 	 */
 	public static boolean isAscending(ArrayList<Integer> list) {
-		return false; // to be completed
+		if (list == null) {
+			return false;
+		}
+		for (int i = 0; i + 1 < list.size(); i++) {
+			if (list.get(i) > list.get(i + 1)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -477,7 +538,15 @@ public class Stage2 {
 	 *         return false if the list is null.
 	 */
 	public static boolean isUnchanged(ArrayList<Integer> list) {
-		return false; // to be completed
+		if (list == null) {
+			return false;
+		}
+		for (int i = 0; i + 1 < list.size(); i++) {
+			if (list.get(i) != list.get(i + 1)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -488,7 +557,20 @@ public class Stage2 {
 	 *         return false if list is null.
 	 */
 	public static boolean isBalanced(ArrayList<Integer> list) {
-		return false; // to be completed
+		if (list == null) {
+			return false;
+		}
+		int numPositive = 0;
+		int numNegative = 0;
+		for (int num : list) {
+			if (num > 0) {
+				numPositive++;
+			} else if (num < 0) {
+				numNegative++;
+			}
+		}
+
+		return (numPositive == numNegative) ? true : false;
 	}
 
 	/**
@@ -499,7 +581,15 @@ public class Stage2 {
 	 *         return false if list is null.
 	 */
 	public static boolean containsDigit(ArrayList<Character> list) {
-		return false; // to be completed
+		if (list == null) {
+			return false;
+		}
+		for (char num : list) {
+			if (num >= '0' && num <= '9') {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -513,6 +603,13 @@ public class Stage2 {
 	 *         the values in the list passed should not change.
 	 */
 	public static ArrayList<Integer> getCopy(ArrayList<Integer> list) {
-		return null; // to be completed
+		if (list == null) {
+			return null;
+		}
+		ArrayList<Integer> cpy = new ArrayList<>();
+		for (int num : list) {
+			cpy.add(num);
+		}
+		return cpy;
 	}
 }
