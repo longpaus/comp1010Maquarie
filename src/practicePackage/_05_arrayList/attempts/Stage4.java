@@ -1,9 +1,10 @@
 package practicePackage._05_arrayList.attempts;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Stage4 {
-
 
 	/**
 	 * May be helpful for other methods
@@ -11,18 +12,37 @@ public class Stage4 {
 	 * @param a
 	 * @param b
 	 * @return items that occur in both the lists.
-	 * the order of items in the reversed list should be in the order they occur in the first list.
-	 * also, there should be a single instance of each item in the resulting list.
+	 *         the order of items in the reversed list should be in the order they
+	 *         occur in the first list.
+	 *         also, there should be a single instance of each item in the resulting
+	 *         list.
 	 * 
-	 * For example:
-	 * a = [1,4,3,6,2,1,2,7,3,2,8,7,7]
-	 * b = [7,7,7,7,4,4,5,5,5,5,1,1,1,7,1,1,1,1,1,2]
-	 * return [1,4,2,7]
+	 *         For example:
+	 *         a = [1,4,3,6,2,1,2,7,3,2,8,7,7]
+	 *         b = [7,7,7,7,4,4,5,5,5,5,1,1,1,7,1,1,1,1,1,2]
+	 *         return [1,4,2,7]
 	 * 
-	 * return null if either list is null
+	 *         return null if either list is null
 	 */
 	public static ArrayList<Integer> getIntersection(ArrayList<Integer> a, ArrayList<Integer> b) {
-		return null; //to be completed
+		if (a == null || b == null)
+			return null;
+		ArrayList<Integer> commonItems = new ArrayList<>();
+		for (int i = 0; i < a.size(); i++) {
+			for (int j = 0; j < b.size(); j++) {
+				if (a.get(i) == b.get(j) && !isElementInList(commonItems, b.get(j)))
+					commonItems.add(b.get(j));
+			}
+		}
+		return commonItems; // to be completed
+	}
+
+	private static boolean isElementInList(ArrayList<Integer> list, int element) {
+		for (int num : list) {
+			if (num == element)
+				return true;
+		}
+		return false;
 	}
 
 	// Do not modify
@@ -36,99 +56,201 @@ public class Stage4 {
 		return c;
 	}
 
-	/**  
+	/**
 	 * @param a: if not null, assumed to be sorted in ascending order
 	 * @param b: if not null, assumed to be sorted in ascending order
 	 * @return result of merging a and b and maintaining an overall sorted order
-	 * return null if EITHER of the parameter lists are null
+	 *         return null if EITHER of the parameter lists are null
 	 */
 	public static ArrayList<Integer> merge(ArrayList<Integer> a, ArrayList<Integer> b) {
-		return null; //to be completed
+		if (a == null || b == null) {
+			return null;
+		}
+		ArrayList<Integer> merged = new ArrayList<>();
+		for (int num : a) {
+			merged.add(num);
+		}
+		for (int num : b) {
+			merged.add(num);
+		}
+		Collections.sort(merged);
+		return merged;
 	}
 
 	/**
 	 * 
 	 * @param list
 	 * @param target
-	 * @param n: least number of consecutive occurrences required
-	 * @return true if there are n or more consecutive occurrences 
-	 * of target in the list, false otherwise 
+	 * @param n:     least number of consecutive occurrences required
+	 * @return true if there are n or more consecutive occurrences
+	 *         of target in the list, false otherwise
 	 */
 	public static boolean nInARow(ArrayList<Integer> list, int target, int n) {
-		return false; //to be completed
+		if (list == null) {
+			return false;
+		}
+		int count = 0;
+		for (int num : list) {
+			if (num == target) {
+				count++;
+			} else {
+				count = 0;
+			}
+			if (count == n) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
 	 * @param list: an ArrayList of ArrayLists
-	 * @param n: assume n is more than 0
+	 * @param n:    assume n is more than 0
 	 * @return a list containing items that exist in at least
-	 * n (sub)ArrayList of the passed list
-	 * order of items should be -
-	 * all items from the first sub-list that satisfy the requirement, followed by,
-	 * all items from the second sub-list (but not in the first sub-list) that satisfy the 
-	 * requirement, followed by,
-	 * all items from the third sub-list (but not in the first two sub-lists) that satisfy 
-	 * the requirement, and so on...
-	 * for example, 
-	 * if list = [[1,2,3,4,5], [4,6,7,8], [3,5,7,6]] and n = 2, return the list [3,4,5,6,7]
-	 * if list = [[1,2,3,4,5], [4,6,7,8], [3,5,7,6]] and n = 3, return the list []
-	 * if list = [[1,2,3,4,5,6], [4,6,7,8], [3,5,7,6,4]] and n = 3, return the list [4, 6]
+	 *         n (sub)ArrayList of the passed list
+	 *         order of items should be -
+	 *         all items from the first sub-list that satisfy the requirement,
+	 *         followed by,
+	 *         all items from the second sub-list (but not in the first sub-list)
+	 *         that satisfy the
+	 *         requirement, followed by,
+	 *         all items from the third sub-list (but not in the first two
+	 *         sub-lists) that satisfy
+	 *         the requirement, and so on...
+	 *         for example,
+	 *         if list = [[1,2,3,4,5], [4,6,7,8], [3,5,7,6]] and n = 2, return the
+	 *         list [3,4,5,6,7]
+	 *         if list = [[1,2,3,4,5], [4,6,7,8], [3,5,7,6]] and n = 3, return the
+	 *         list []
+	 *         if list = [[1,2,3,4,5,6], [4,6,7,8], [3,5,7,6,4]] and n = 3, return
+	 *         the list [4, 6]
 	 */
 	public static ArrayList<Integer> itemsInAtleastN(ArrayList<ArrayList<Integer>> list, int n) {
-		return null; //to be completed
+		return null; // to be completed
 	}
 
 	/**
 	 * 
 	 * @param list
 	 * @return the longest sequence in ascending order.
-	 * return the sequence that occurs first in case of a tie.
-	 * for example, 
-	 * if list = {10, 70, 20, 50, 50, 80}, return {20, 50, 50, 80}
-	 * if list = {70, 70, 20, 10, 80, 20}, return {70, 70}
-	 * if list = {50, 40, 30, 30}, return {30}
-	 * if list = null, return null
-	 * if list = {}, return {}
+	 *         return the sequence that occurs first in case of a tie.
+	 *         for example,
+	 *         if list = {10, 70, 20, 50, 50, 80}, return {20, 50, 50, 80}
+	 *         if list = {70, 70, 20, 10, 80, 20}, return {70, 70}
+	 *         if list = {50, 40, 30, 30}, return {30}
+	 *         if list = null, return null
+	 *         if list = {}, return {}
 	 */
 	public static ArrayList<Integer> getLongestAscendingSequence(ArrayList<Integer> list) {
-		return null; //to be completed
+		ArrayList<Integer> sequence = new ArrayList<>();
+		ArrayList<Integer> lonngest = new ArrayList<>();
+		for (int num : list) {
+			if (sequence.isEmpty()) {
+				sequence.add(num);
+			} else if (sequence.get(sequence.size() - 1) <= num) {
+				sequence.add(num);
+			} else {
+				sequence.clear();
+				sequence.add(num);
+			}
+			if (sequence.size() > lonngest.size()) {
+				lonngest = cpyList(sequence);
+			}
+		}
+		return lonngest; // to be completed
+	}
+
+	private static ArrayList<Integer> cpyList(ArrayList<Integer> list) {
+		ArrayList<Integer> cpy = new ArrayList<>();
+		for (int num : list) {
+			cpy.add(num);
+		}
+		return cpy;
 	}
 
 	/**
 	 * 
 	 * @param list
 	 * @return the longest sequence of the same item.
-	 * return the sequence that occurs first in case of a tie.
-	 * for example, 
-	 * if list = {10, 30, 30, 30, 30, 50, 50, 80}, return {30, 30, 30, 30}
-	 * if list = {70, 70, 90, 90, 80, 80}, return {70, 70}
-	 * if list = {50, 40, 30, 20}, return {50}
-	 * if list = null, return null
-	 * if list = {}, return {}
+	 *         return the sequence that occurs first in case of a tie.
+	 *         for example,
+	 *         if list = {10, 30, 30, 30, 30, 50, 50, 80}, return {30, 30, 30, 30}
+	 *         if list = {70, 70, 90, 90, 80, 80}, return {70, 70}
+	 *         if list = {50, 40, 30, 20}, return {50}
+	 *         if list = null, return null
+	 *         if list = {}, return {}
 	 */
 	public static ArrayList<Integer> getLongestUnchangedSequence(ArrayList<Integer> list) {
-		return null; //to be completed
+		ArrayList<Integer> sequence = new ArrayList<>();
+		ArrayList<Integer> lonngest = new ArrayList<>();
+		for (int num : list) {
+			if (sequence.isEmpty()) {
+				sequence.add(num);
+			} else if (sequence.get(sequence.size() - 1) == num) {
+				sequence.add(num);
+			} else {
+				sequence.clear();
+				sequence.add(num);
+			}
+			if (sequence.size() > lonngest.size()) {
+				lonngest = cpyList(sequence);
+			}
+		}
+		return lonngest; // to be completed
 	}
 
 	/**
 	 * 
 	 * @param list
-	 * sort the list in descending order,
-	 * do nothing if the list is null or has fewer than 2 items
+	 *             sort the list in descending order,
+	 *             do nothing if the list is null or has fewer than 2 items
 	 */
 	public static void sortDesc(ArrayList<Integer> list) {
-		//to be completed
+		if (list == null || list.size() < 2) {
+			return;
+		}
+		for (int i = 0; i + 1 < list.size(); i++) {
+			if (list.get(i) < list.get(i + 1)) {
+				int tmp = list.get(i);
+				list.set(i, list.get(i + 1));
+				list.set(i + 1, tmp);
+				i = -1;
+			}
+		}
 	}
 
 	/**
 	 * 
 	 * @param list
-	 * if the list is in ascending order, sort it in descending order
-	 * if the list is in descending order, sort it in ascending order
-	 * do nothing if the list is unsorted
+	 *             if the list is in ascending order, sort it in descending order
+	 *             if the list is in descending order, sort it in ascending order
+	 *             do nothing if the list is unsorted
 	 */
 	public static void reverseSort(ArrayList<Integer> list) {
-		//to be completed
+		if(list==null||list.isEmpty()){
+			return;
+		}
+		boolean asc = (list.get(0) > list.get(list.size() - 1)) ? false : true;
+		if (!checkIfSorted(list, asc)) {
+			return;
+		}
+		if (!asc) {
+			Collections.sort(list);
+		} else {
+			Collections.sort(list, Collections.reverseOrder());
+		}
+
+	}
+
+	private static boolean checkIfSorted(ArrayList<Integer> list, boolean asc) {
+		for (int i = 0; i + 1 < list.size(); i++) {
+			if (asc && list.get(i) > list.get(i + 1)) {
+				return false;
+			} else if (!asc && list.get(i) < list.get(i + 1)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -136,48 +258,54 @@ public class Stage4 {
 	 * @param a
 	 * @param b
 	 * @return an list containing the common items from a and b.
-	 * If list a contains p occurrences of an item and list b contains q occurrences of the same item, 
-	 * the list returned must have Math.min(p, q) occurrences of that item.
+	 *         If list a contains p occurrences of an item and list b contains q
+	 *         occurrences of the same item,
+	 *         the list returned must have Math.min(p, q) occurrences of that item.
 	 * 
-	 * All occurrences of an item in the resulting list should be together, and be in the order of first appearance in list a.
-	 * See the last junit test sample for details 
+	 *         All occurrences of an item in the resulting list should be together,
+	 *         and be in the order of first appearance in list a.
+	 *         See the last junit test sample for details
 	 */
 	public static ArrayList<Integer> getCommonItemsUnsorted(ArrayList<Integer> a, ArrayList<Integer> b) {
-		return null; //to be completed
+		return null; // to be completed
 	}
 
 	/**
 	 * @param list
 	 * @return the longest sequence of items that occurs
-	 * in the mirrored (back to front) form as well.
-	 * in case of a tie, return the sequence that occurs first.
-	 * Examples:
-	 * if list = {10, 20, 30, 40, 50, 20, 10, 40, 30, 20, 50, 40}
-	 * return the list {20, 30, 40} (not {40, 30, 20})
+	 *         in the mirrored (back to front) form as well.
+	 *         in case of a tie, return the sequence that occurs first.
+	 *         Examples:
+	 *         if list = {10, 20, 30, 40, 50, 20, 10, 40, 30, 20, 50, 40}
+	 *         return the list {20, 30, 40} (not {40, 30, 20})
 	 *
-	 * if list = {1,2,1,2,1,2,1,2,1,2,1,2}
-	 * return the list {1,2,1,2,1,2,1,2,1,2,1}
-	 * if list = {5,6,7,8,9}
-	 * return the list {5}
-	 * if list = {5,6,7,5,7,6,8,5,6,9}
-	 * return the list {6,7}
+	 *         if list = {1,2,1,2,1,2,1,2,1,2,1,2}
+	 *         return the list {1,2,1,2,1,2,1,2,1,2,1}
+	 *         if list = {5,6,7,8,9}
+	 *         return the list {5}
+	 *         if list = {5,6,7,5,7,6,8,5,6,9}
+	 *         return the list {6,7}
 	 */
 	public static ArrayList<Integer> longestMirroredSequence(ArrayList<Integer> list) {
-		return null; //to be completed
+		return null; // to be completed
 	}
 
 	/**
 	 * 
 	 * @param data
-	 * @param n: length of sublists needed
-	 * @return a list of lists such that each sublist has the same (and highest) total from all possible
-	 * sublists of the same length in the original list
-	 * For example, if a list is [6,4,6,1,1,1,1,1,1,1,3,1,2,5,6,5,1,1,3,2,1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4] 
-	 * and we need to find:
-	 * - sublists of length 3 with the highest total will be [6,4,6] & [5,6,5]. return [[6,4,6],[5,6,5]]
-	 * - a sublist of length 8, with highest total will be [4,4,4,4,4,4,4,4]. return [[4,4,4,4,4,4,4,4]]
+	 * @param n:   length of sublists needed
+	 * @return a list of lists such that each sublist has the same (and highest)
+	 *         total from all possible
+	 *         sublists of the same length in the original list
+	 *         For example, if a list is
+	 *         [6,4,6,1,1,1,1,1,1,1,3,1,2,5,6,5,1,1,3,2,1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]
+	 *         and we need to find:
+	 *         - sublists of length 3 with the highest total will be [6,4,6] &
+	 *         [5,6,5]. return [[6,4,6],[5,6,5]]
+	 *         - a sublist of length 8, with highest total will be
+	 *         [4,4,4,4,4,4,4,4]. return [[4,4,4,4,4,4,4,4]]
 	 */
 	public static ArrayList<ArrayList<Integer>> bestTotalSubLists(ArrayList<Integer> data, int n) {
-		return null; //to be completed
+		return null; // to be completed
 	}
 }
