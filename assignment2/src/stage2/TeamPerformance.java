@@ -31,6 +31,12 @@ public class TeamPerformance {
 	 * 
 	 */
 	public TeamPerformance(String name, int played, int won, int drawn, int gScored, int gConceded) {
+		this.name = name;
+		gamesPlayed = played;
+		gamesWon = won;
+		gamesDrawn = drawn;
+		goalsScored = gScored;
+		goalsConceded = gConceded;
 		//to be completed
 	}
 
@@ -57,6 +63,16 @@ public class TeamPerformance {
 	 * @param gConceded: goals conceded
 	 */
 	public TeamPerformance(String name, int gScored, int gConceded) {
+		this.name = name;
+		goalsScored = gScored;
+		goalsConceded = gConceded;
+		this.gamesPlayed += 1;
+		if(gScored > gConceded){
+			this.gamesWon += 1;
+		}
+		else if(gScored == gConceded){
+			this.gamesDrawn += 1;
+		}
 		//to be completed
 	}
 
@@ -94,7 +110,11 @@ public class TeamPerformance {
 	 * 		return 0 if calling object has the same goal difference as that of parameter object
 	 */
 	public int compareTo(TeamPerformance other) {
-		return 0; //to be completed
+		if(this.gamesWon > other.gamesWon)
+			return 1;
+		else if(this.gamesWon < other.gamesWon)
+			return -1;
+		return (getGoalDifference() > other.getGoalDifference()) ? 1 : (getGoalDifference() < other.getGoalDifference()) ? -1 : 0;
 	}
 
 	/**
@@ -125,6 +145,25 @@ public class TeamPerformance {
 	 * @param m: Match whose data should be added to teams performance
 	 */
 	public void addMatchRecord(Match m) {
+		if(m.homeTeam != this.name && m.awayTeam != this.name)
+			return;
+		this.gamesPlayed += 1;
+		if(this.name == m.awayTeam){
+			this.goalsScored += m.awayGoals;
+			this.goalsConceded+= m.homeGoals;
+			if(m.winner() == -1)
+				this.gamesWon += 1;
+			else if(m.winner() == 0)
+				this.gamesDrawn += 1;
+		}
+		else if(this.name == m.homeTeam){
+			this.goalsScored += m.homeGoals;
+			this.goalsConceded+= m.awayGoals;
+			if(m.winner() == 1)
+				this.gamesWon += 1;
+			else if(m.winner() == 0)
+				this.gamesDrawn += 1;
+		}
 		//to be completed
 	}
 }
