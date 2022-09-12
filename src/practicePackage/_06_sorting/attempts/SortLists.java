@@ -13,6 +13,19 @@ public class SortLists {
 	 * 			sorted and no duplicates should appear in the list
 	 */
 	public static ArrayList<Integer> insertUnique(ArrayList<Integer> list, int value) {
+		int lo = 0, hi = list.size() - 1;
+	    // This below check covers all cases , so need to check
+	    // for mid=lo-(hi-lo)/2
+	    while (hi - lo > 1) {
+	        int mid = (hi + lo) / 2;
+	        if (list.get(mid) < value) {
+	            lo = mid + 1;
+	        }
+	        else {
+	            hi = mid;
+	        }
+	    }
+	    
 		return null; //to be completed
 	}
 

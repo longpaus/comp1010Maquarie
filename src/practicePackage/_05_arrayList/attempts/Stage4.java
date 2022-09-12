@@ -160,14 +160,6 @@ public class Stage4 {
 		return lonngest; // to be completed
 	}
 
-	private static ArrayList<Integer> cpyList(ArrayList<Integer> list) {
-		ArrayList<Integer> cpy = new ArrayList<>();
-		for (int num : list) {
-			cpy.add(num);
-		}
-		return cpy;
-	}
-
 	/**
 	 * 
 	 * @param list
@@ -227,7 +219,7 @@ public class Stage4 {
 	 *             do nothing if the list is unsorted
 	 */
 	public static void reverseSort(ArrayList<Integer> list) {
-		if(list==null||list.isEmpty()){
+		if (list == null || list.isEmpty()) {
 			return;
 		}
 		boolean asc = (list.get(0) > list.get(list.size() - 1)) ? false : true;
@@ -267,7 +259,17 @@ public class Stage4 {
 	 *         See the last junit test sample for details
 	 */
 	public static ArrayList<Integer> getCommonItemsUnsorted(ArrayList<Integer> a, ArrayList<Integer> b) {
-		return null; // to be completed
+		ArrayList<Integer> common = new ArrayList<>();
+		for (int num : a) {
+			for (int i = 0; i < b.size(); i++) {
+				if (num == b.get(i)) {
+					b.remove(i);
+					common.add(num);
+					break;
+				}
+			}
+		}
+		return common;
 	}
 
 	/**
@@ -287,7 +289,45 @@ public class Stage4 {
 	 *         return the list {6,7}
 	 */
 	public static ArrayList<Integer> longestMirroredSequence(ArrayList<Integer> list) {
-		return null; // to be completed
+		ArrayList<ArrayList<Integer>> sequences = new ArrayList<>();
+		ArrayList<Integer> sequence = new ArrayList<>();
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = i; j < list.size(); j++) {
+				sequence.add(list.get(j));
+				sequences.add(cpyList(sequence));
+			}
+			sequence.clear();
+		}
+		ArrayList<Integer> longest = new ArrayList<>();
+		for (int i = 0; i < sequences.size(); i++) {
+			for (int j = 0; j < sequences.size(); j++) {
+				if (j != i && isMirroredPair(sequences.get(i), sequences.get(j))
+						&& sequences.get(i).size() > longest.size()) {
+					longest = sequences.get(i);
+				}
+			}
+		}
+		return longest; // to be completed
+	}
+
+	private static ArrayList<Integer> cpyList(ArrayList<Integer> list) {
+		ArrayList<Integer> cpy = new ArrayList<>();
+		for (int num : list) {
+			cpy.add(num);
+		}
+		return cpy;
+	}
+
+	private static boolean isMirroredPair(ArrayList<Integer> a, ArrayList<Integer> b) {
+		if (a.size() != b.size()) {
+			return false;
+		}
+		for (int i = 0; i < a.size(); i++) {
+			if (a.get(i) != b.get(b.size() - 1 - i)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
